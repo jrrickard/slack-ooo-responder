@@ -1,0 +1,32 @@
+{
+  "user" : "UUSRRRRRIDDDD",
+  "start" : "2017-08-27T00:00:00-07:00",
+  "end" : "2017-09-06T09:00:00-07:00",
+  "contacts" : [
+     {
+       "start" : "2017-08-27T00:00:00-07:00",
+       "end" : "2017-09-06T08:59:00-07:00",
+       "users" : ["@tal", "@lior" ]
+    },
+    {
+       "start" : "2017-08-27T09:00:00-07:00",
+       "end" : "2017-09-06T22:59:00-07:00",
+       "users" : ["@matt", "@gal"]
+    },
+      {
+       "start" : "2017-08-27T23:00:00-07:00",
+       "end" : "2017-09-06T23:59:00-07:00",
+       "users" : ["@john", "@xguy"]
+    }
+  ],
+  "suggestions" : [
+    {
+       "text" : "Click this to request a local user or platform operator",
+       "url" : "https://www.slack.com"
+    },
+    {
+      "text" : "Check this page out! ",
+      "url" : "https://www.github.com"
+    }
+  ]
+}
