@@ -31,15 +31,17 @@ func generateContactSuggestion(config *common.Config) (string, bool) {
 	var contactSuggestion string
 	var ok = false
 	now := time.Now()
-	nowHour := now.Hour()
-
+	nowYear, nowMonth, nowDay := now.Date()
+	log.Printf(now.Location().String())
 	var selectedContact common.ContactSuggestion
 	if config.Contacts.Len() > 0 {
 		for _, contact := range config.Contacts {
-			startHour := contact.BeginTime.Hour()
-			endHour := contact.EndTime.Hour()
 
-			match := nowHour >= startHour && nowHour <= endHour
+			startHour, startMinute, startSecond := contact.BeginTime.Clock()
+			start := time.Date(nowYear, nowMonth, nowDay, startHour, startMinute, startSecond, 0, contact.BeginTime.Location())
+			endHour, endMinute, endSecond := contact.EndTime.Clock()
+			end := time.Date(nowYear, nowMonth, nowDay, endHour, endMinute, endSecond, 0, contact.BeginTime.Location())
+			match := (start.Before(now) || start.Equal(now)) && (end.After(now) || end.Equal(now))
 			if match {
 				selectedContact = contact
 				break

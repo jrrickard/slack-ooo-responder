@@ -2,7 +2,6 @@ package common
 
 import (
 	"encoding/json"
-	"log"
 	"sort"
 	"time"
 )
@@ -79,7 +78,6 @@ type Config struct {
 type config Config
 
 func (this *Config) UnmarshalJSON(b []byte) error {
-	log.Printf(string(b))
 	var config config
 	err := json.Unmarshal(b, &config)
 	start, err := time.Parse(time.RFC3339, config.Start)
