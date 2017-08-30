@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: slack-responder
+  labels:
+    name: slack-responder
+spec:
+  containers: 
+  - name: slack-responder
+    volumeMounts:
+      - mountPath: /etc/localtime
+        name: localtime
+      - mountPath: /etc/timezone
+        name: timezone    
+    image: gcr.io/jrrickard-178216/slack-responder:latest
+    env:
+    - name: SLACK_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: slack-token
+          key: token
+    args: ["-config", "INSERT_LINK_TO_FILE_HERE"
+]
+  volumes: 
+    - name: localtime
+      hostPath:
+        path: /etc/localtime
+    - name: timezone
+      hostPath: 
+        path: /etc/timezone
+
